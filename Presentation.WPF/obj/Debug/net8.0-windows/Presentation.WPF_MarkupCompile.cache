@@ -1,5 +1,5 @@
 ﻿Presentation.WPF
-
+1.0.0.0
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR
 D:\WPF_Projects\EasyInventory\Presentation.WPF\App.xaml
 8732086859
 11413424753
-231534210190
+25-1684313998
 2421891140239
 Views\UserControls\DashboardView.xaml;Views\UserControls\EmployeeView.xaml;Views\UserControls\InventoryView.xaml;Views\UserControls\PurchaseView.xaml;Views\UserControls\ReportsView.xaml;Views\UserControls\SalesView.xaml;Views\Windows\LoginWindow.xaml;Views\Windows\MainWindow.xaml;
 
-False
+True
 
