@@ -9,9 +9,14 @@ namespace Presentation.WPF.Views
     public partial class MainWindow : Window
     {
         // ✅ Parameterless constructor REQUIRED for XAML
-        public MainWindow(MainViewModel viewModel)
+        public MainWindow()
         {
             InitializeComponent();
+        }
+
+        // ✅ USED by DI
+        public MainWindow(MainViewModel viewModel) : this()
+        {
             DataContext = viewModel;
         }
     }
