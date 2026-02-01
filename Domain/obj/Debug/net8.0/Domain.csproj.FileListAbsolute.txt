@@ -1,0 +1,12 @@
+D:\WPF_Projects\EasyInventory\Domain\bin\Debug\net8.0\Domain.deps.json
+D:\WPF_Projects\EasyInventory\Domain\bin\Debug\net8.0\Domain.dll
+D:\WPF_Projects\EasyInventory\Domain\bin\Debug\net8.0\Domain.pdb
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.dll
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\refint\Domain.dll
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.pdb
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\ref\Domain.dll

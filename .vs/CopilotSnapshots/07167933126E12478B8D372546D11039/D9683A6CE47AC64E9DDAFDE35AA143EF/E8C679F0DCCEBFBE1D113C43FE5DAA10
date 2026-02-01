@@ -1,0 +1,108 @@
+﻿using Application.Common;
+using Application.Interfaces;
+using Application.Services;
+using Domain.Interfaces;
+using Infrastructure.Data;
+using Infrastructure.Repositories;
+using MaterialDesignThemes.Wpf;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Presentation.WPF.Services;
+using Presentation.WPF.ViewModels;
+using Presentation.WPF.Views;
+using System.Windows;
+
+namespace Presentation.WPF
+{
+    public partial class App : System.Windows.Application
+    {
+        private IServiceProvider? _serviceProvider;
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            IServiceCollection services = new ServiceCollection();
+
+            var configuration = BuildConfiguration();
+
+            ConfigureServices(services, configuration);
+
+            _serviceProvider = services.BuildServiceProvider();
+
+            ShowMainWindow();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            if (_serviceProvider is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+
+            base.OnExit(e);
+        }
+
+        private static IConfiguration BuildConfiguration()
+        {
+            return new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+        }
+
+        private static void ConfigureServices(
+            IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var provider = configuration["Database:Provider"];
+
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                switch (provider)
+                {
+                    case "SqlServer":
+                        var sqlServerConn = configuration["Database:ConnectionStrings:SqlServer"];
+                        options.UseSqlServer(sqlServerConn, sql => sql.EnableRetryOnFailure());
+                        break;
+
+                    case "MSSQL":
+                        var mssqlConn = configuration["Database:ConnectionStrings:MSSQL"];
+                        options.UseSqlServer(mssqlConn, sql => sql.EnableRetryOnFailure());
+                        break;
+
+                    case "MySql":
+                        var mySqlConn = configuration["Database:ConnectionStrings:MySql"];
+                        options.UseMySql(mySqlConn, ServerVersion.AutoDetect(mySqlConn));
+                        break;
+
+                    default:
+                        throw new InvalidOperationException(
+                            $"Unsupported database provider: {provider}");
+                }
+            });
+
+            // Repositories & Services
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+
+            services.AddSingleton<SnackbarMessageQueue>();
+            services.AddSingleton<IMessageService, SnackbarMessageService>();
+
+            // ViewModels & Views
+            services.AddTransient<EmployeeViewModel>();
+            services.AddTransient<EmployeeView>();
+        }
+
+        private void ShowMainWindow()
+        {
+            var mainWindow = _serviceProvider!.GetRequiredService<EmployeeView>();
+            mainWindow.DataContext =
+                _serviceProvider.GetRequiredService<EmployeeViewModel>();
+
+            mainWindow.Show();
+        }
+    }
+}
