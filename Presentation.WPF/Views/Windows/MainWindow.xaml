@@ -1,12 +1,97 @@
-﻿<Window
-    x:Class="Presentation.WPF.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:views="clr-namespace:Presentation.WPF.Views"
-    Title="Employee Management"
-    Height="500"
-    Width="800">
+﻿<Window x:Class="Presentation.WPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation.WPF.ViewModels" 
+        Title="EasyInventory"
+        WindowState="Maximized">
 
-    <ContentControl x:Name="MainContent" />
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding MenuWidth}"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ================= LEFT MENU ================= -->
+        <Border Grid.Column="0" Background="#263238">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="456"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+               
+                <!-- Header + Hamburger -->
+                <Border Grid.Row="0" Padding="0">
+                    <DockPanel VerticalAlignment="Center">
+                        <Button Content="☰"
+                                FontSize="20"
+                                Command="{Binding ToggleMenuCommand}"
+                                Style="{StaticResource FlatIconButton}"/>
+
+                        <TextBlock Text="Menu"
+                                   Foreground="White"
+                                   FontSize="12"
+                                   FontWeight="Bold"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Visibility="{Binding IsMenuExpanded,
+                                                Converter={StaticResource BoolToVisibility}}"/>
+                    </DockPanel>
+                </Border>
+
+                <!-- Menu -->
+                <Border Grid.Row="1" Padding="0">
+                    <StackPanel HorizontalAlignment="Center">
+                    <Button Command="{Binding ShowDashboardCommand}"
+                            Style="{StaticResource MenuButton}"
+                            Tag=""
+                            Content="Dashboard"
+                            Margin="0,5"/>
+
+                    <Button Command="{Binding ShowInventoryCommand}"
+                            Style="{StaticResource MenuButton}"
+                            Tag=""
+                            Content="Inventory"
+                            Margin="0,5"/>
+
+                    <Button Command="{Binding ShowSalesCommand}"
+                            Style="{StaticResource MenuButton}"
+                            Tag=""
+                            Content="Sales"
+                            Margin="0,5"/>
+
+                    <Button Command="{Binding ShowPurchaseCommand}"
+                            Style="{StaticResource MenuButton}"
+                            Tag=""
+                            Content="Purchase"
+                            Margin="0,5"/>
+
+                    <Button Command="{Binding ShowReportsCommand}"
+                            Style="{StaticResource MenuButton}"
+                            Tag=""
+                            Content="Reports"
+                            Margin="0,5"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Logoff -->
+                <Button Grid.Row="2"
+                        Command="{Binding LogoffCommand}"
+                        Style="{StaticResource MenuButton}"
+                        Tag=""
+                        Content="Logoff"
+                        HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <ContentControl Grid.Column="1"
+                        Content="{Binding CurrentView}"/>
+    </Grid>
 </Window>

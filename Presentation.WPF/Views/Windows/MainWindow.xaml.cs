@@ -1,17 +1,18 @@
-﻿using Presentation.WPF.Views;
+﻿using Presentation.WPF.ViewModels;
 using System.Windows;
 
-namespace Presentation.WPF
+namespace Presentation.WPF.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(EmployeeView employeeView)
+        // ✅ Parameterless constructor REQUIRED for XAML
+        public MainWindow(MainViewModel viewModel)
         {
             InitializeComponent();
-            MainContent.Content = employeeView;
+            DataContext = viewModel;
         }
     }
 }

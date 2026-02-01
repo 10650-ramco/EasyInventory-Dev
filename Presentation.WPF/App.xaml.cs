@@ -94,8 +94,14 @@ namespace Presentation.WPF
             services.AddSingleton<IWindowService, WindowService>();
 
             // ViewModels
+            services.AddSingleton<MainViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<EmployeeViewModel>();
+            services.AddTransient<DashboardView>();
+            services.AddTransient<InventoryView>();
+            services.AddTransient<SalesView>();
+            services.AddTransient<PurchaseView>();
+            services.AddTransient<ReportsView>();
 
             // View
             services.AddSingleton<LoginWindow>();

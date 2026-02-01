@@ -6,6 +6,7 @@ D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEdi
 D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
 D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
 D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.sourcelink.json
 D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.dll
 D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\refint\Domain.dll
 D:\WPF_Projects\EasyInventory\Domain\obj\Debug\net8.0\Domain.pdb

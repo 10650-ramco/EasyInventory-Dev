@@ -66,8 +66,8 @@ namespace Presentation.WPF.ViewModels
                 return;
             }
 
-            MessageBox.Show("Login successful", "Success",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show("Login successful", "Success",
+            //    MessageBoxButton.OK, MessageBoxImage.Information);
 
             // ✅ SUCCESS
             _windowService.ShowMainWindow();

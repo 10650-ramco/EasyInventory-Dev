@@ -16,7 +16,6 @@ namespace Presentation.WPF.Services
         {
             // Resolve MainWindow via DI
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-
             System.Windows.Application.Current.MainWindow = mainWindow;
             mainWindow.Show();
         }
@@ -29,6 +28,23 @@ namespace Presentation.WPF.Services
                 .FirstOrDefault();
 
             loginWindow?.Close();
+        }
+
+        public void ShowLoginWindow()
+        {             
+            // Resolve LoginWindow via DI
+            var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
+            System.Windows.Application.Current.MainWindow = loginWindow;
+            loginWindow.Show();
+        }
+
+        public void CloseMainWindow()
+        {
+            // Close the currently active window (MainWindow)
+            var mainWindow = System.Windows.Application.Current.Windows
+                .OfType<MainWindow>()
+                .FirstOrDefault();
+            mainWindow?.Close();
         }
     }
 }
