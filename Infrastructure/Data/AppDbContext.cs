@@ -15,6 +15,7 @@ namespace Infrastructure.Data
         // DbSets (optional but recommended)
         public DbSet<Employee> Employees => Set<Employee>();
         public DbSet<User> Users => Set<User>();
+        public DbSet<Product> Products => Set<Product>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -81,7 +81,7 @@
                         Style="{StaticResource MenuButton}"
                         Tag=""
                         Content="Logoff"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center" />
             </Grid>
         </Border>
 

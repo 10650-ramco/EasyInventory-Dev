@@ -1,8 +1,10 @@
 ﻿D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 FD:\WPF_Projects\EasyInventory\Presentation.WPF\App.xaml;;
 FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\UserControls\DashboardView.xaml;;
-FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\UserControls\InventoryView.xaml;;
+FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\UserControls\PasswordInputControl.xaml;;
+FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\UserControls\ProductView.xaml;;
 FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\UserControls\PurchaseView.xaml;;
 FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\UserControls\ReportsView.xaml;;
 FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\UserControls\SalesView.xaml;;
+FD:\WPF_Projects\EasyInventory\Presentation.WPF\Views\Windows\LoginWindow.xaml;;
 

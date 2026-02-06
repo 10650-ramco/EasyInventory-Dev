@@ -33,7 +33,7 @@ namespace Presentation.WPF.ViewModels
                 CurrentView = _serviceProvider.GetRequiredService<DashboardView>());
 
             ShowInventoryCommand = new RelayCommand(() =>
-                CurrentView = _serviceProvider.GetRequiredService<InventoryView>());
+                CurrentView = _serviceProvider.GetRequiredService<ProductView>());
 
             ShowSalesCommand = new RelayCommand(() =>
                 CurrentView = _serviceProvider.GetRequiredService<SalesView>());
@@ -78,7 +78,7 @@ namespace Presentation.WPF.ViewModels
 
         private void Logoff()
         {
-            _windowService.ShowLoginWindow();
+            //_windowService.ShowLoginWindow();
             _windowService.CloseMainWindow();
         }
     }

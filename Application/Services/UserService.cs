@@ -57,9 +57,14 @@ namespace Application.Services
                 .GetByUserNameAsync(request.UserName, cancellationToken);
 
             if (user == null)
-                return LoginResult.Failure("User not found");
+                return LoginResult.Failure("Invalid username or password");
 
-            // ⚠️ In production, NEVER store plain passwords
+            //var isValid = PasswordHasher.Verify(request.password, user.Password);
+
+            //// ⚠️ In production, NEVER store plain passwords
+            //if (!isValid)
+            //    return LoginResult.Failure("Invalid username or password");
+
             if (user.Password != request.Password)
                 return LoginResult.Failure("Invalid password");
 

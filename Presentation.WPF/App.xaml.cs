@@ -84,21 +84,24 @@ namespace Presentation.WPF
             // Repositories
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Services 
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductService, ProductService>();
 
             // Window / Navigation
             services.AddSingleton<IWindowService, WindowService>();
+
 
             // ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<EmployeeViewModel>();
             services.AddTransient<DashboardView>();
-            services.AddTransient<InventoryView>();
+            services.AddTransient<ProductView>();
             services.AddTransient<SalesView>();
             services.AddTransient<PurchaseView>();
             services.AddTransient<ReportsView>();

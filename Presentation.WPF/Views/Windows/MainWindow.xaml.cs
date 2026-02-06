@@ -19,5 +19,6 @@ namespace Presentation.WPF.Views
         {
             DataContext = viewModel;
         }
+
     }
 }

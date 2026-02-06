@@ -3,32 +3,16 @@
   "WorkspaceRootPath": "D:\\WPF_Projects\\EasyInventory\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\views\\usercontrols\\productview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\views\\usercontrols\\productview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\views\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\views\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\viewmodels\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\viewmodels\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\views\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\views\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\views\\windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\views\\windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|d:\\wpf_projects\\easyinventory\\presentation.wpf\\views\\usercontrols\\productview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0C189C34-CAC2-71DE-B4A2-4935F615836F}|Presentation.WPF\\Presentation.WPF.csproj|solutionrelative:presentation.wpf\\views\\usercontrols\\productview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,91 +42,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\Windows\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "Presentation.WPF\\Views\\Windows\\MainWindow.xaml",
-              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\Windows\\MainWindow.xaml",
-              "RelativeToolTip": "Presentation.WPF\\Views\\Windows\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-01T19:30:57.943Z",
+              "DocumentIndex": 0,
+              "Title": "ProductView.xaml.cs",
+              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\UserControls\\ProductView.xaml.cs",
+              "RelativeDocumentMoniker": "Presentation.WPF\\Views\\UserControls\\ProductView.xaml.cs",
+              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\UserControls\\ProductView.xaml.cs*",
+              "RelativeToolTip": "Presentation.WPF\\Views\\UserControls\\ProductView.xaml.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T04:16:04.038Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\Windows\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Presentation.WPF\\Views\\Windows\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\Windows\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Presentation.WPF\\Views\\Windows\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T19:12:04.966Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoginViewModel.cs",
-              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\ViewModels\\LoginViewModel.cs",
-              "RelativeDocumentMoniker": "Presentation.WPF\\ViewModels\\LoginViewModel.cs",
-              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\ViewModels\\LoginViewModel.cs",
-              "RelativeToolTip": "Presentation.WPF\\ViewModels\\LoginViewModel.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAawEoAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T19:11:50.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "App.xaml",
-              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\App.xaml",
-              "RelativeDocumentMoniker": "Presentation.WPF\\App.xaml",
-              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\App.xaml",
-              "RelativeToolTip": "Presentation.WPF\\App.xaml",
+              "Title": "ProductView.xaml",
+              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\UserControls\\ProductView.xaml",
+              "RelativeDocumentMoniker": "Presentation.WPF\\Views\\UserControls\\ProductView.xaml",
+              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\UserControls\\ProductView.xaml",
+              "RelativeToolTip": "Presentation.WPF\\Views\\UserControls\\ProductView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-01T18:48:21.972Z",
+              "WhenOpened": "2026-02-06T03:49:16.761Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\Windows\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Presentation.WPF\\Views\\Windows\\LoginWindow.xaml.cs",
-              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\Views\\Windows\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "Presentation.WPF\\Views\\Windows\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ProductViewModel.cs",
+              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\ViewModels\\ProductViewModel.cs",
+              "RelativeDocumentMoniker": "Presentation.WPF\\ViewModels\\ProductViewModel.cs",
+              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\ViewModels\\ProductViewModel.cs",
+              "RelativeToolTip": "Presentation.WPF\\ViewModels\\ProductViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:47:31.315Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\App.xaml.cs",
-              "RelativeDocumentMoniker": "Presentation.WPF\\App.xaml.cs",
-              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\App.xaml.cs",
-              "RelativeToolTip": "Presentation.WPF\\App.xaml.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAIwGsAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:41:02.77Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MainViewModel.cs",
-              "DocumentMoniker": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\ViewModels\\MainViewModel.cs",
-              "RelativeDocumentMoniker": "Presentation.WPF\\ViewModels\\MainViewModel.cs",
-              "ToolTip": "D:\\WPF_Projects\\EasyInventory\\Presentation.WPF\\ViewModels\\MainViewModel.cs",
-              "RelativeToolTip": "Presentation.WPF\\ViewModels\\MainViewModel.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAuwDIAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:12:54.512Z",
+              "WhenOpened": "2026-02-04T17:39:53.37Z",
               "EditorCaption": ""
             }
           ]

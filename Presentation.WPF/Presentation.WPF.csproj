@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="Images\eye-crossed.png" />
     <None Remove="Images\InvLogo.png" />
     <None Remove="Images\lock.png" />
     <None Remove="Images\LoginBgImage.jpg" />
@@ -31,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\eye-crossed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\InvLogo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

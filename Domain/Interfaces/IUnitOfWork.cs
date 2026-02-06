@@ -1,12 +1,19 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Domain.Interfaces
+﻿namespace Domain.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        Task<int> SaveChangesAsync(
-            CancellationToken cancellationToken = default);
+        IUserRepository Users { get; }
+        IEmployeeRepository Employees { get; }
+        IProductRepository Products { get; }
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
+
+//namespace Domain.Interfaces
+//{
+//    public interface IUnitOfWork : IDisposable
+//    {
+//        Task<int> SaveChangesAsync(
+//            CancellationToken cancellationToken = default);
+//    }
+//}

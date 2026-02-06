@@ -17,7 +17,7 @@
             return new User
             {
                 UserName = userName,
-                Password = password,    
+                Password = password, //PasswordHasher.Hash(password),
                 Name = name,
                 LastName = lastName,
                 Email = email
@@ -31,7 +31,7 @@
             {
                 Id = id,
                 UserName = userName,
-                Password = password,
+                Password = password, //PasswordHasher.Hash(password),
                 Name = name,
                 Email = email,
                 LastName = lastName

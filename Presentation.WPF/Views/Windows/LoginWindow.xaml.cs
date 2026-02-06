@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Presentation.WPF.Views
 {
@@ -10,6 +11,9 @@ namespace Presentation.WPF.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private bool _isPasswordVisible = false;
+
+
         // ✅ Parameterless constructor REQUIRED for XAML
         public LoginWindow()
         {
