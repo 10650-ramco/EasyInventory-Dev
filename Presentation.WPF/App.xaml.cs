@@ -101,6 +101,7 @@ namespace Presentation.WPF
             services.AddTransient<LoginViewModel>();
             services.AddTransient<EmployeeViewModel>();
             services.AddTransient<DashboardView>();
+            services.AddTransient<InventoryView>();
             services.AddTransient<ProductView>();
             services.AddTransient<SalesView>();
             services.AddTransient<PurchaseView>();
@@ -114,7 +115,7 @@ namespace Presentation.WPF
 
         private void ShowLoginWindow()
         {
-            var loginWindow = _serviceProvider!.GetRequiredService<LoginWindow>();
+            var loginWindow = _serviceProvider!.GetRequiredService<MainWindow>();
             loginWindow.Show();
         }
     }

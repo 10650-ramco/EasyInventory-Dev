@@ -4,7 +4,6 @@ D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\Wi
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\DashboardView.g.cs
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\EmployeeView.g.cs
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\PasswordInputControl.g.cs
-D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ProductView.g.cs
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\PurchaseView.g.cs
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ReportsView.g.cs
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\SalesView.g.cs
@@ -15,6 +14,8 @@ D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Presenta
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Presentation.WPF_MarkupCompile.cache
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Presentation.WPF_MarkupCompile.lref
+D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ProductView.baml
+D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ProductView.g.cs
 D:\WPF_Projects\EasyInventory\Presentation.WPF\bin\Debug\net8.0-windows\appsettings.json
 D:\WPF_Projects\EasyInventory\Presentation.WPF\bin\Debug\net8.0-windows\Presentation.WPF.exe
 D:\WPF_Projects\EasyInventory\Presentation.WPF\bin\Debug\net8.0-windows\Presentation.WPF.deps.json
@@ -84,7 +85,6 @@ D:\WPF_Projects\EasyInventory\Presentation.WPF\bin\Debug\net8.0-windows\Infrastr
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\App.baml
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\DashboardView.baml
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\PasswordInputControl.baml
-D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ProductView.baml
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\PurchaseView.baml
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ReportsView.baml
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\SalesView.baml
@@ -101,3 +101,5 @@ D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\refint\P
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Presentation.WPF.pdb
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Presentation.WPF.genruntimeconfig.cache
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\ref\Presentation.WPF.dll
+D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\InventoryView.g.cs
+D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\InventoryView.baml

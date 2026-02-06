@@ -7,7 +7,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent"
+        Background="#FF3A3A03"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
 

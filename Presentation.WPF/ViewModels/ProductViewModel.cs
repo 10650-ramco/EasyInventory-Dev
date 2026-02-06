@@ -1,110 +1,141 @@
-using Application.DTOs;
+﻿using Application.DTOs;
 using Application.Interfaces;
 using Presentation.WPF.Infrastructure;
+using Presentation.WPF.ViewModels;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WpfMvvmEfSample.Infrastructure;
 
-namespace Presentation.WPF.ViewModels
+public class ProductViewModel : ViewModelBase
 {
-    public class ProductViewModel : ViewModelBase
+    private readonly IProductService _service;
+
+    public ObservableCollection<ProductDto> Products { get; } = new();
+    public ObservableCollection<CategoryDto> Categories { get; } = new();
+
+    public GridLength DrawerWidth => IsDrawerOpen ? new GridLength(350) : new GridLength(0);
+
+    private ProductDto _editableProduct = new();
+    public ProductDto EditableProduct
     {
-        private readonly IProductService _productService;
+        get => _editableProduct;
+        set => SetProperty(ref _editableProduct, value);
+    }
 
-        public ProductViewModel(IProductService productService)
+    private bool _isDrawerOpen;
+    public bool IsDrawerOpen
+    {
+        get => _isDrawerOpen;
+        set
         {
-            _productService = productService;
-
-            RefreshCommand = new AsyncRelayCommand(LoadAsync);
-            AddNewItemCommand = new RelayCommand(OpenAddDrawer);
-            EditItemCommand = new RelayCommand<int>(OpenEditDrawer);
-            DeleteItemCommand = new AsyncRelayCommand<int>(DeleteAsync);
-            SaveItemCommand = new AsyncRelayCommand(SaveAsync);
-            CancelCommand = new RelayCommand(CloseDrawer);
-
-            _ = LoadAsync();
+            if (SetProperty(ref _isDrawerOpen, value))
+                OnPropertyChanged(nameof(DrawerWidth));
         }
+    }
 
-        public ObservableCollection<ProductDto> Products { get; } = new();
+    public string DrawerTitle => EditableProduct.Id == 0 ? "Add Product" : "Edit Product";
 
-        private ProductDto _selectedProduct;
-        public ProductDto SelectedProduct
+    private int _pageIndex = 1;
+    private const int PageSize = 10;
+    private int _totalPages;
+
+    public string PageDisplay => $"{_pageIndex} / {_totalPages}";
+
+    // Commands
+    public ICommand OpenAddDrawerCommand { get; }
+    public ICommand OpenEditDrawerCommand { get; }
+    public ICommand SaveCommand { get; }
+    public ICommand DeleteCommand { get; }
+    public ICommand CloseDrawerCommand { get; }
+    public ICommand NextPageCommand { get; }
+    public ICommand PrevPageCommand { get; }
+
+    public ProductViewModel(IProductService service)
+    {
+        _service = service;
+
+        IsDrawerOpen = false;
+
+        OpenAddDrawerCommand = new RelayCommand(OpenAddDrawer);
+        OpenEditDrawerCommand = new RelayCommand<ProductDto>(OpenEditDrawer);
+        SaveCommand = new AsyncRelayCommand(SaveAsync);
+        DeleteCommand = new AsyncRelayCommand<ProductDto>(DeleteAsync);
+        CloseDrawerCommand = new RelayCommand(() => IsDrawerOpen = false);
+
+        NextPageCommand = new AsyncRelayCommand(
+            () => LoadAsync(_pageIndex + 1),
+            () => _pageIndex < _totalPages);
+
+        PrevPageCommand = new AsyncRelayCommand(
+            () => LoadAsync(_pageIndex - 1),
+            () => _pageIndex > 1);
+
+        _ = InitializeAsync();
+    }
+
+    private async Task InitializeAsync()
+    {
+        Categories.Clear();
+        var categories = await _service.GetCategoriesAsync();
+        foreach (var category in categories)
+            Categories.Add(category);
+
+        await LoadAsync(1);
+    }
+
+    private async Task LoadAsync(int page)
+    {
+        var result = await _service.GetPagedAsync(page, PageSize);
+
+        Products.Clear();
+        foreach (var item in result.Items)
+            Products.Add(item);
+
+        _pageIndex = page;
+        _totalPages = result.TotalPages;
+
+        OnPropertyChanged(nameof(PageDisplay));
+    }
+
+    private void OpenAddDrawer()
+    {
+        EditableProduct = new ProductDto();
+        IsDrawerOpen = true;
+        OnPropertyChanged(nameof(DrawerTitle));
+    }
+
+    private void OpenEditDrawer(ProductDto product)
+    {
+        EditableProduct = new ProductDto
         {
-            get => _selectedProduct;
-            set { _selectedProduct = value; OnPropertyChanged(); }
-        }
+            Id = product.Id,
+            Name = product.Name,
+            CategoryId = product.CategoryId,
+            CategoryName = product.CategoryName,
+            Price = product.Price,
+            Stock = product.Stock
+        };
+        IsDrawerOpen = true;
+        OnPropertyChanged(nameof(DrawerTitle));
+    }
 
-        public bool IsDrawerOpen { get; set; }
-        public bool IsLoading { get; set; }
+    private async Task SaveAsync()
+    {
+        if (EditableProduct.Id == 0)
+            await _service.AddAsync(EditableProduct);
+        else
+            await _service.UpdateAsync(EditableProduct);
 
-        public int TotalItems => Products.Count;
-        public int LowStockCount => Products.Count(p => p.Status == "Low Stock");
-        public int OutOfStockCount => Products.Count(p => p.Status == "Out of Stock");
-        public decimal TotalValue => Products.Sum(p => p.Price * p.Stock);
+        IsDrawerOpen = false;
+        await LoadAsync(_pageIndex);
+    }
 
-        public string DrawerTitle => SelectedProduct?.ProductId == 0
-            ? "Add Product"
-            : "Edit Product";
-
-        public ICommand RefreshCommand { get; }
-        public ICommand AddNewItemCommand { get; }
-        public ICommand EditItemCommand { get; }
-        public ICommand DeleteItemCommand { get; }
-        public ICommand SaveItemCommand { get; }
-        public ICommand CancelCommand { get; }
-
-        private async Task LoadAsync()
-        {
-            IsLoading = true;
-            OnPropertyChanged(nameof(IsLoading));
-
-            Products.Clear();
-            var items = await _productService.GetProductsAsync();
-            foreach (var item in items)
-                Products.Add(item);
-
-            OnPropertyChanged(nameof(TotalItems));
-            OnPropertyChanged(nameof(LowStockCount));
-            OnPropertyChanged(nameof(OutOfStockCount));
-            OnPropertyChanged(nameof(TotalValue));
-
-            IsLoading = false;
-            OnPropertyChanged(nameof(IsLoading));
-        }
-
-        private void OpenAddDrawer()
-        {
-            SelectedProduct = new ProductDto();
-            IsDrawerOpen = true;
-            OnPropertyChanged(nameof(IsDrawerOpen));
-        }
-
-        private void OpenEditDrawer(int productId)
-        {
-            SelectedProduct = Products.First(p => p.ProductId == productId);
-            IsDrawerOpen = true;
-            OnPropertyChanged(nameof(IsDrawerOpen));
-        }
-
-        private async Task SaveAsync()
-        {
-            await _productService.SaveAsync(SelectedProduct);
-            CloseDrawer();
-            await LoadAsync();
-        }
-
-        private async Task DeleteAsync(int productId)
-        {
-            await _productService.DeleteAsync(productId);
-            await LoadAsync();
-        }
-
-        private void CloseDrawer()
-        {
-            IsDrawerOpen = false;
-            OnPropertyChanged(nameof(IsDrawerOpen));
-        }
+    private async Task DeleteAsync(ProductDto product)
+    {
+        if (product == null) return;
+        await _service.DeleteAsync(product.Id);
+        await LoadAsync(_pageIndex);
     }
 }

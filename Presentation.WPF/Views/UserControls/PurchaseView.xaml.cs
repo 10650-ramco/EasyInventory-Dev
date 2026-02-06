@@ -10,6 +10,7 @@ namespace Presentation.WPF.Views
         public PurchaseView()
         {
             InitializeComponent();
+            
         }
     }
 }

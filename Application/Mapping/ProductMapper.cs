@@ -1,47 +1,52 @@
 ﻿using Application.DTOs;
 using Domain.Entities;
 
-namespace Application.Mapping
+namespace Application.Mappers
 {
     public static class ProductMapper
     {
-        public static ProductDto ToDto(Product product)
+        // Domain → DTO
+        public static ProductDto ToDto(this Product product)
         {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
             return new ProductDto
             {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                Category = product.Category,
-                Unit = product.Unit,
+                Id = product.ProductId,
+                Name = product.ProductName,
+                CategoryId = product.CategoryId,
+                //CategoryName = product.Category?.Name,
                 Price = product.Price,
-                Stock = product.Stock,
-                LowStockThreshold = product.LowStockThreshold,
-                Status = product.GetStatus()
+                Stock = product.Stock
             };
         }
 
-        public static Product ToDomain(ProductDto dto)
+        // DTO → Domain (CREATE)
+        public static Product ToDomain(this ProductDto dto)
         {
-            return new Product
-            {
-                ProductName = dto.ProductName,
-                Category = dto.Category,
-                Unit = dto.Unit,
-                Price = dto.Price,
-                Stock = dto.Stock,
-                LowStockThreshold = dto.LowStockThreshold
-            };
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
+
+            return Product.Create(
+                dto.Name.Trim(),
+                dto.CategoryId,
+                dto.Price,
+                dto.Stock);
         }
 
-        public static void MapToExisting(ProductDto dto, Product product)
+        // DTO → Domain (UPDATE)
+        public static Product ToDomain(this ProductDto dto, int id)
         {
-            product.ProductName = dto.ProductName;
-            product.Category = dto.Category;
-            product.Unit = dto.Unit;
-            product.Price = dto.Price;
-            product.Stock = dto.Stock;
-            product.LowStockThreshold = dto.LowStockThreshold;
-            product.ModifiedDate = DateTime.Now;
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
+
+            return Product.Update(
+                id,
+                dto.Name.Trim(),
+                dto.CategoryId,
+                dto.Price,
+                dto.Stock);
         }
     }
 }

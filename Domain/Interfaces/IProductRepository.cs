@@ -1,13 +1,25 @@
-﻿using Domain.Entities;
+﻿using Domain.Common;
+using Domain.Entities;
 
 namespace Domain.Interfaces
 {
     public interface IProductRepository
     {
-        Task<List<Product>> GetAllAsync();
-        Task<Product?> GetByIdAsync(int productId);
+        // =========================
+        // PAGINATION
+        // =========================
+        Task<PagedResult<Product>> GetPagedAsync(int page, int pageSize);
+
+        // =========================
+        // LOOKUPS
+        // =========================
+        Task<IEnumerable<Category>> GetCategoriesAsync();
+
+        // =========================
+        // CRUD
+        // =========================
         Task AddAsync(Product product);
         Task UpdateAsync(Product product);
-        Task DeleteAsync(Product product);
+        Task DeleteAsync(int id);
     }
 }

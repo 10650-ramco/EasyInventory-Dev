@@ -1,58 +1,59 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Application.Mappers;
-using Application.Mapping;
-using Domain.Entities;
+using Domain.Common;
 using Domain.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Application.Services
+public class ProductService : IProductService
 {
-    public class ProductService : IProductService
+    private readonly IProductRepository _repository;
+
+    public ProductService(IProductRepository repository)
     {
-        private readonly IUnitOfWork _unitOfWork;
+        _repository = repository;
+    }
 
-        public ProductService(IUnitOfWork unitOfWork)
+    public async Task<IEnumerable<CategoryDto>> GetCategoriesAsync()
+    {
+        var categories = await _repository.GetCategoriesAsync();
+
+        return categories.Select(c => new CategoryDto
         {
-            _unitOfWork = unitOfWork;
-        }
+            CategoryId = c.CategoryId,
+            CategoryName = c.CategoryName
+        });
+    }
 
-        public async Task<List<ProductDto>> GetProductsAsync()
-        {
-            var products = await _unitOfWork.Products.GetAllAsync();
-            return products.Select(ProductMapper.ToDto).ToList();
-        }
+    public async Task AddAsync(ProductDto dto)
+        => await _repository.AddAsync(dto.ToDomain());
 
-        public async Task SaveAsync(ProductDto dto)
-        {
-            Product product;
+    public async Task UpdateAsync(ProductDto dto)
+        => await _repository.UpdateAsync(dto.ToDomain(dto.Id));
 
-            if (dto.ProductId == 0)
-            {
-                product = ProductMapper.ToDomain(dto);
-                await _unitOfWork.Products.AddAsync(product);
-            }
-            else
-            {
-                product = await _unitOfWork.Products.GetByIdAsync(dto.ProductId)
-                          ?? throw new KeyNotFoundException("Product not found");
+    public async Task DeleteAsync(int id)
+        => await _repository.DeleteAsync(id);
 
-                ProductMapper.MapToExisting(dto, product);
-                await _unitOfWork.Products.UpdateAsync(product);
-            }
+    // =========================
+    // PAGED PRODUCTS
+    // =========================
+    public async Task<PagedResult<ProductDto>> GetPagedAsync(int page, int pageSize)
+    {
+        if (page <= 0)
+            throw new ArgumentOutOfRangeException(nameof(page));
 
-            await _unitOfWork.SaveChangesAsync();
-        }
+        if (pageSize <= 0)
+            throw new ArgumentOutOfRangeException(nameof(pageSize));
 
-        public async Task DeleteAsync(int productId)
-        {
-            var product = await _unitOfWork.Products.GetByIdAsync(productId)
-                          ?? throw new KeyNotFoundException("Product not found");
+        var result = await _repository.GetPagedAsync(page, pageSize);
 
-            await _unitOfWork.Products.DeleteAsync(product);
-            await _unitOfWork.SaveChangesAsync();
-        }
+        var productDtos = result.Items
+                                .Select(p => p.ToDto())
+                                .ToList();
+
+        return new PagedResult<ProductDto>(
+            productDtos,
+            result.TotalCount,
+            page,
+            pageSize);
     }
 }

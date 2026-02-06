@@ -15,6 +15,7 @@ namespace Presentation.WPF.ViewModels
         public ICommand ToggleMenuCommand { get; }
         public ICommand ShowDashboardCommand { get; }
         public ICommand ShowInventoryCommand { get; }
+        public ICommand ShowProductCommand { get; }
         public ICommand ShowSalesCommand { get; }
         public ICommand ShowPurchaseCommand { get; }
         public ICommand ShowReportsCommand { get; }
@@ -33,6 +34,9 @@ namespace Presentation.WPF.ViewModels
                 CurrentView = _serviceProvider.GetRequiredService<DashboardView>());
 
             ShowInventoryCommand = new RelayCommand(() =>
+                CurrentView = _serviceProvider.GetRequiredService<InventoryView>());
+
+            ShowProductCommand = new RelayCommand(() =>
                 CurrentView = _serviceProvider.GetRequiredService<ProductView>());
 
             ShowSalesCommand = new RelayCommand(() =>
