@@ -79,18 +79,20 @@ namespace Presentation.WPF
                         throw new InvalidOperationException(
                             $"Unsupported database provider: {provider}");
                 }
-            });
+            }, ServiceLifetime.Transient);
 
             // Repositories
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             // Services 
-            services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IProductService, ProductService>();
+            //services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
             // Window / Navigation
             services.AddSingleton<IWindowService, WindowService>();
@@ -98,15 +100,22 @@ namespace Presentation.WPF
 
             // ViewModels
             services.AddSingleton<MainViewModel>();
-            services.AddTransient<LoginViewModel>();
+            services.AddTransient<CompanyDetailsViewModel>();
+            services.AddSingleton<CustomersViewModel>();
+            services.AddTransient<DashboardViewModel>();
+            services.AddTransient<DeliveryChallanViewModel>();
             services.AddTransient<EmployeeViewModel>();
-            services.AddTransient<DashboardView>();
-            services.AddTransient<InventoryView>();
-            services.AddTransient<ProductView>();
-            services.AddTransient<SalesView>();
-            services.AddTransient<PurchaseView>();
-            services.AddTransient<ReportsView>();
-
+            services.AddTransient<ItemGroupViewModel>();
+            services.AddTransient<ItemViewModel>();
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<ProductViewModel>();
+            services.AddTransient<PurchaseInvoiceViewModel>();
+            services.AddTransient<PurchaseOrderViewModel>();
+            services.AddTransient<SalesInvoiceViewModel>();
+            services.AddTransient<StockSummaryReportViewModel>();
+            services.AddTransient<SuppliersViewModel>();
+            services.AddTransient<UserViewModel>();
+  
             // View
             services.AddSingleton<LoginWindow>();
             services.AddSingleton<MainWindow>();

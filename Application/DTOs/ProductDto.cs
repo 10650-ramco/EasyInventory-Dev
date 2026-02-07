@@ -8,5 +8,8 @@
         public string CategoryName { get; set; }
         public decimal Price { get; set; }
         public int Stock { get; set; }
+        public string? Unit { get; set; }
+        public int? LowStockThreshold { get; set; }
+        public string? Status { get; set; }
     }
 }

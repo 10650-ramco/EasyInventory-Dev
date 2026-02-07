@@ -1,7 +1,7 @@
 ﻿using Application.DTOs;
 using Domain.Entities;
 
-namespace Application.Mappers
+namespace Application.Mapping
 {
     public static class ProductMapper
     {
@@ -16,9 +16,12 @@ namespace Application.Mappers
                 Id = product.ProductId,
                 Name = product.ProductName,
                 CategoryId = product.CategoryId,
-                //CategoryName = product.Category?.Name,
+                CategoryName = product.Category?.CategoryName ?? "No Category",
                 Price = product.Price,
-                Stock = product.Stock
+                Stock = product.Stock,
+                Unit = product.Unit,
+                LowStockThreshold = product.LowStockThreshold,
+                Status = product.GetStatus()
             };
         }
 
@@ -28,11 +31,15 @@ namespace Application.Mappers
             if (dto == null)
                 throw new ArgumentNullException(nameof(dto));
 
-            return Product.Create(
+            var product = Product.Create(
                 dto.Name.Trim(),
                 dto.CategoryId,
                 dto.Price,
                 dto.Stock);
+
+            product.Unit = dto.Unit;
+            product.LowStockThreshold = dto.LowStockThreshold;
+            return product;
         }
 
         // DTO → Domain (UPDATE)
@@ -41,12 +48,16 @@ namespace Application.Mappers
             if (dto == null)
                 throw new ArgumentNullException(nameof(dto));
 
-            return Product.Update(
+            var product = Product.Update(
                 id,
                 dto.Name.Trim(),
                 dto.CategoryId,
                 dto.Price,
                 dto.Stock);
+
+            product.Unit = dto.Unit;
+            product.LowStockThreshold = dto.LowStockThreshold;
+            return product;
         }
     }
 }

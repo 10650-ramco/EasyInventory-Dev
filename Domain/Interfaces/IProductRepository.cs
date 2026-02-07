@@ -6,9 +6,14 @@ namespace Domain.Interfaces
     public interface IProductRepository
     {
         // =========================
+        // RETRIEVAL
+        // =========================
+        Task<IEnumerable<Product>> GetAllAsync();
+
+        // =========================
         // PAGINATION
         // =========================
-        Task<PagedResult<Product>> GetPagedAsync(int page, int pageSize);
+        Task<PagedResult<Product>> GetPagedAsync(int page, int pageSize, string? searchTerm = null);
 
         // =========================
         // LOOKUPS

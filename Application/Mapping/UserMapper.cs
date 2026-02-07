@@ -1,10 +1,10 @@
 ﻿using Application.DTOs;
 using Domain.Entities;
 
-namespace Application.Mappers
+namespace Application.Mapping
 {
     /// <summary>
-    /// Maps Employee between Domain and DTO.
+    /// Maps User between Domain and DTO.
     /// Mapping belongs to Application layer by design.
     /// </summary>
     public static class UserMapper

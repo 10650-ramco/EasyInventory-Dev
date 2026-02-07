@@ -6,9 +6,14 @@ namespace Application.Interfaces
     public interface IProductService
     {
         // =========================
+        // RETRIEVAL
+        // =========================
+        Task<IEnumerable<ProductDto>> GetAllAsync();
+
+        // =========================
         // PAGINATION
         // =========================
-        Task<PagedResult<ProductDto>> GetPagedAsync(int page, int pageSize);
+        Task<PagedResult<ProductDto>> GetPagedAsync(int page, int pageSize, string? searchTerm = null);
 
         // =========================
         // LOOKUPS

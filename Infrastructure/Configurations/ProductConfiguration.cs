@@ -61,7 +61,7 @@ namespace Infrastructure.Data.Configurations
             // =========================
             // RELATIONSHIPS
             // =========================
-            builder.HasOne<Category>()
+            builder.HasOne(e => e.Category)
                    .WithMany()
                    .HasForeignKey(e => e.CategoryId)
                    .OnDelete(DeleteBehavior.Restrict);

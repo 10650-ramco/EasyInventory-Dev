@@ -15,6 +15,9 @@ namespace Domain.Entities
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; } = DateTime.Now;
 
+        // Navigation Properties
+        public virtual Category Category { get; set; } = null!;
+
         private Product() { }
 
         public static Product Create(string productName, int categoryId, decimal price, int stock)

@@ -6,9 +6,10 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WpfMvvmEfSample.Infrastructure;
 
-public class ProductViewModel : ViewModelBase
+namespace Presentation.WPF.ViewModels
+{
+    public class ProductViewModel : ViewModelBase
 {
     private readonly IProductService _service;
 
@@ -138,4 +139,5 @@ public class ProductViewModel : ViewModelBase
         await _service.DeleteAsync(product.Id);
         await LoadAsync(_pageIndex);
     }
+}
 }

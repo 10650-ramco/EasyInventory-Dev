@@ -1,7 +1,7 @@
 ﻿    using Application.DTOs;
 using Domain.Entities;
 
-namespace Application.Mappers
+namespace Application.Mapping
 {
     /// <summary>
     /// Maps Employee between Domain and DTO.

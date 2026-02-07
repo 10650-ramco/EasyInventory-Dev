@@ -1,9 +1,74 @@
 ﻿<Application x:Class="Presentation.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:Presentation.WPF.Converters">
+             xmlns:converters="clr-namespace:Presentation.WPF.Converters"
+             xmlns:vm="clr-namespace:Presentation.WPF.ViewModels"
+             xmlns:views="clr-namespace:Presentation.WPF.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Global Flat Design Overrides -->
+            <Style TargetType="materialDesign:Card" BasedOn="{StaticResource {x:Type materialDesign:Card}}">
+                <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
+                <Setter Property="UniformCornerRadius" Value="8"/>
+            </Style>
+
+            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0"/>
+                <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="6"/>
+            </Style>
+
+            <!-- ===================== -->
+            <!-- 🗺️ View Mappings -->
+            <!-- ===================== -->
+            <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+                <views:DashboardView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
+                <views:CustomersView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ItemViewModel}">
+                <views:ItemView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ItemGroupViewModel}">
+                <views:ItemGroupView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DeliveryChallanViewModel}">
+                <views:DeliveryChallanView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SalesInvoiceViewModel}">
+                <views:SalesInvoiceView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PurchaseOrderViewModel}">
+                <views:PurchaseOrderView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PurchaseInvoiceViewModel}">
+                <views:PurchaseInvoiceView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:StockSummaryReportViewModel}">
+                <views:StockSummaryReportView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CompanyDetailsViewModel}">
+                <views:CompanyDetailsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:UserViewModel}">
+                <views:UserView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SuppliersViewModel}">
+                <views:SuppliersView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ProductViewModel}">
+                <views:ProductView/>
+            </DataTemplate>
 
         <!-- ===================== -->
         <!-- 🔁 Converters -->
@@ -249,6 +314,6 @@
 
         <CubicEase x:Key="CubicEaseOut" EasingMode="EaseOut"/>
         <CubicEase x:Key="CubicEaseIn" EasingMode="EaseIn"/>
-
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

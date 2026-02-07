@@ -3,90 +3,164 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="EasyInventory"
-        WindowState="Maximized">
+        xmlns:vm="clr-namespace:Presentation.WPF.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        WindowState="Maximized"
+        AllowsTransparency="False"
+        WindowStartupLocation="CenterScreen"
+        Title="EasyInventory ERP" Width="1200" Height="720">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="40" CornerRadius="0" GlassFrameThickness="1" ResizeBorderThickness="5"/>
+    </WindowChrome.WindowChrome>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding MenuWidth}"/>
+            <ColumnDefinition Width="260"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ================= LEFT MENU ================= -->
-        <Border Grid.Column="0" Background="#263238">
+        <!-- Sidebar -->
+        <Border Background="{DynamicResource MaterialDesignCardBackground}" 
+                BorderThickness="0 0 1 0" 
+                BorderBrush="{DynamicResource MaterialDesignDivider}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="456"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="Auto"/> <!-- Header -->
+                    <RowDefinition Height="*"/>    <!-- Menu -->
+                    <RowDefinition Height="Auto"/> <!-- Footer -->
                 </Grid.RowDefinitions>
-               
-                <!-- Header + Hamburger -->
-                <Border Grid.Row="0" Padding="0">
-                    <DockPanel VerticalAlignment="Center">
-                        <Button Content="☰"
-                                FontSize="20"
-                                Command="{Binding ToggleMenuCommand}"
-                                Style="{StaticResource FlatIconButton}"/>
 
-                        <TextBlock Text="Menu"
-                                   Foreground="White"
-                                   FontSize="12"
-                                   FontWeight="Bold"
-                                   Margin="5,0,0,0"
-                                   VerticalAlignment="Center"
-                                   Visibility="{Binding IsMenuExpanded,
-                                                Converter={StaticResource BoolToVisibility}}"/>
-                    </DockPanel>
-                </Border>
+                <!-- Header -->
+                <StackPanel Orientation="Horizontal" Margin="24 32 24 24" VerticalAlignment="Center" WindowChrome.IsHitTestVisibleInChrome="True">
+                    <materialDesign:PackIcon Kind="ViewDashboard" Width="32" Height="32" VerticalAlignment="Center" Margin="0 0 12 0" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                    <TextBlock Text="EasyInventory" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" FontFamily="{DynamicResource MaterialDesignFont}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
 
                 <!-- Menu -->
-                <Border Grid.Row="1" Padding="0">
-                    <StackPanel HorizontalAlignment="Center">
-                    <Button Command="{Binding ShowDashboardCommand}"
-                            Style="{StaticResource MenuButton}"
-                            Tag=""
-                            Content="Dashboard"
-                            Margin="0,5"/>
+                <ScrollViewer Grid.Row="1" 
+                              VerticalScrollBarVisibility="Auto" 
+                              Padding="12 0"
+                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True">
+                    <ScrollViewer.Resources>
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                    </ScrollViewer.Resources>
+                    <ItemsControl ItemsSource="{Binding Menus}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding}">
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Style.Triggers>
+                                                <!-- Group Item (Expander) -->
+                                                <DataTrigger Binding="{Binding HasChildren}" Value="True">
+                                                    <Setter Property="ContentTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <Expander Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" Margin="0 1">
+                                                                    <Expander.Header>
+                                                                        <StackPanel Orientation="Horizontal" Margin="8 6">
+                                                                            <materialDesign:PackIcon Kind="{Binding Icon}" Width="24" Height="24" Margin="0 0 16 0" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                                            <TextBlock Text="{Binding Title}" FontSize="15" VerticalAlignment="Center" FontWeight="Medium" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                                                        </StackPanel>
+                                                                    </Expander.Header>
+                                                                    <ItemsControl ItemsSource="{Binding Children}" Margin="20 0 0 0">
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <Button Command="{Binding Command}" Style="{StaticResource MaterialDesignFlatButton}" 
+                                                                                        HorizontalContentAlignment="Left" Padding="16 10" Margin="0 2" Height="Auto" 
+                                                                                        Foreground="{DynamicResource MaterialDesignBody}">
+                                                                                    <StackPanel Orientation="Horizontal">
+                                                                                        <materialDesign:PackIcon Kind="{Binding Icon}" Width="18" Height="18" Margin="0 0 12 0" Opacity="0.7"/>
+                                                                                        <TextBlock Text="{Binding Title}" FontSize="14"/>
+                                                                                    </StackPanel>
+                                                                                </Button>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                </Expander>
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                
+                                                <!-- Leaf Item (Button) -->
+                                                <DataTrigger Binding="{Binding HasChildren}" Value="False">
+                                                    <Setter Property="ContentTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <Button Command="{Binding Command}" Style="{StaticResource MaterialDesignFlatButton}" 
+                                                                        HorizontalContentAlignment="Left" Padding="16 10" Margin="0 1" Height="Auto" 
+                                                                        Foreground="{DynamicResource MaterialDesignBody}">
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <materialDesign:PackIcon Kind="{Binding Icon}" Width="24" Height="24" Margin="0 0 16 0" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                                        <TextBlock Text="{Binding Title}" FontSize="15" FontWeight="Medium"/>
+                                                                    </StackPanel>
+                                                                </Button>
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
 
-                    <Button Command="{Binding ShowInventoryCommand}"
-                            Style="{StaticResource MenuButton}"
-                            Tag=""
-                            Content="Inventory"
-                            Margin="0,5"/>
-
-                    <Button Command="{Binding ShowSalesCommand}"
-                            Style="{StaticResource MenuButton}"
-                            Tag=""
-                            Content="Sales"
-                            Margin="0,5"/>
-
-                    <Button Command="{Binding ShowPurchaseCommand}"
-                            Style="{StaticResource MenuButton}"
-                            Tag=""
-                            Content="Purchase"
-                            Margin="0,5"/>
-
-                    <Button Command="{Binding ShowReportsCommand}"
-                            Style="{StaticResource MenuButton}"
-                            Tag=""
-                            Content="Reports"
-                            Margin="0,5"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Logoff -->
-                <Button Grid.Row="2"
-                        Command="{Binding LogoffCommand}"
-                        Style="{StaticResource MenuButton}"
-                        Tag=""
-                        Content="Logoff"
-                        HorizontalAlignment="Center" />
+                <!-- Footer -->
+                <StackPanel Grid.Row="2" Margin="24">
+                    <Separator Background="{DynamicResource MaterialDesignDivider}" Margin="0 0 0 16"/>
+                    <DockPanel LastChildFill="False">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                             <materialDesign:PackIcon Kind="ThemeLightDark" Width="20" Height="20" Margin="0 0 8 0" Foreground="{DynamicResource MaterialDesignBody}" Opacity="0.6"/>
+                             <TextBlock Text="Dark Mode" VerticalAlignment="Center" FontWeight="Medium" Foreground="{DynamicResource MaterialDesignBody}" />
+                        </StackPanel>
+                        <ToggleButton IsChecked="{Binding IsDarkMode}" Style="{StaticResource MaterialDesignSwitchToggleButton}" DockPanel.Dock="Right"/>
+                    </DockPanel>
+                    <TextBlock Text="v1.0.0" Opacity="0.4" FontSize="11" Margin="0 16 0 0" HorizontalAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}"/>
+                </StackPanel>
             </Grid>
         </Border>
 
-        <!-- ================= MAIN CONTENT ================= -->
-        <ContentControl Grid.Column="1"
-                        Content="{Binding CurrentView}"/>
+        <!-- Content Area -->
+        <Border Grid.Column="1" Background="{DynamicResource MaterialDesignPaper}" 
+                BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                BorderThickness="0">
+            <Grid x:Name="MainGrid" HorizontalAlignment="Stretch">
+                 <Grid.RowDefinitions>
+                     <RowDefinition Height="Auto"/> <!-- Title Bar -->
+                     <RowDefinition Height="*"/>    <!-- Content -->
+                 </Grid.RowDefinitions>
+
+                 <!-- Custom Window Controls -->
+                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 4 4 0" WindowChrome.IsHitTestVisibleInChrome="True">
+                     <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Minimize" x:Name="BtnMinimize" Click="BtnMinimize_Click" Height="34" Width="40" Padding="0">
+                         <materialDesign:PackIcon Kind="WindowMinimize" Width="18" Height="18" Foreground="{DynamicResource MaterialDesignBody}"/>
+                     </Button>
+                     <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Maximize" x:Name="BtnMaximize" Click="BtnMaximize_Click" Height="34" Width="40" Padding="0">
+                         <materialDesign:PackIcon Kind="WindowMaximize" Width="18" Height="18" Foreground="{DynamicResource MaterialDesignBody}"/>
+                     </Button>
+                     <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Close" x:Name="BtnClose" Click="BtnClose_Click" Height="34" Width="40" Padding="0">
+                         <materialDesign:PackIcon Kind="WindowClose" Width="18" Height="18" Foreground="{DynamicResource MaterialDesignBody}"/>
+                     </Button>
+                 </StackPanel>
+                 
+                 <ContentControl Grid.Row="1" Content="{Binding CurrentView}" Margin="24"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

@@ -1,59 +1,60 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
-using Application.Mappers;
+using Application.Mapping;
 using Domain.Common;
 using Domain.Interfaces;
 
-public class ProductService : IProductService
+namespace Application.Services
 {
-    private readonly IProductRepository _repository;
-
-    public ProductService(IProductRepository repository)
+    public class ProductService : IProductService
     {
-        _repository = repository;
-    }
+        private readonly IProductRepository _repository;
 
-    public async Task<IEnumerable<CategoryDto>> GetCategoriesAsync()
-    {
-        var categories = await _repository.GetCategoriesAsync();
-
-        return categories.Select(c => new CategoryDto
+        public ProductService(IProductRepository repository)
         {
-            CategoryId = c.CategoryId,
-            CategoryName = c.CategoryName
-        });
-    }
+            _repository = repository;
+        }
 
-    public async Task AddAsync(ProductDto dto)
-        => await _repository.AddAsync(dto.ToDomain());
+        public async Task<IEnumerable<ProductDto>> GetAllAsync()
+        {
+            var products = await _repository.GetAllAsync();
+            return products.Select(p => p.ToDto());
+        }
 
-    public async Task UpdateAsync(ProductDto dto)
-        => await _repository.UpdateAsync(dto.ToDomain(dto.Id));
+        public async Task<IEnumerable<CategoryDto>> GetCategoriesAsync()
+        {
+            var categories = await _repository.GetCategoriesAsync();
+            return categories.Select(c => c.ToDto());
+        }
 
-    public async Task DeleteAsync(int id)
-        => await _repository.DeleteAsync(id);
+        public async Task AddAsync(ProductDto dto)
+            => await _repository.AddAsync(dto.ToDomain());
 
-    // =========================
-    // PAGED PRODUCTS
-    // =========================
-    public async Task<PagedResult<ProductDto>> GetPagedAsync(int page, int pageSize)
-    {
-        if (page <= 0)
-            throw new ArgumentOutOfRangeException(nameof(page));
+        public async Task UpdateAsync(ProductDto dto)
+            => await _repository.UpdateAsync(dto.ToDomain(dto.Id));
 
-        if (pageSize <= 0)
-            throw new ArgumentOutOfRangeException(nameof(pageSize));
+        public async Task DeleteAsync(int id)
+            => await _repository.DeleteAsync(id);
 
-        var result = await _repository.GetPagedAsync(page, pageSize);
+        public async Task<PagedResult<ProductDto>> GetPagedAsync(int page, int pageSize, string? searchTerm = null)
+        {
+            if (page <= 0)
+                throw new ArgumentOutOfRangeException(nameof(page));
 
-        var productDtos = result.Items
-                                .Select(p => p.ToDto())
-                                .ToList();
+            if (pageSize <= 0)
+                throw new ArgumentOutOfRangeException(nameof(pageSize));
 
-        return new PagedResult<ProductDto>(
-            productDtos,
-            result.TotalCount,
-            page,
-            pageSize);
+            var result = await _repository.GetPagedAsync(page, pageSize, searchTerm);
+
+            var productDtos = result.Items
+                                    .Select(p => p.ToDto())
+                                    .ToList();
+
+            return new PagedResult<ProductDto>(
+                productDtos,
+                result.TotalCount,
+                page,
+                pageSize);
+        }
     }
 }

@@ -1,0 +1,16 @@
+D:\WPF_Projects\EasyInventory\Application\bin\Debug\net8.0-windows\Application.deps.json
+D:\WPF_Projects\EasyInventory\Application\bin\Debug\net8.0-windows\Application.dll
+D:\WPF_Projects\EasyInventory\Application\bin\Debug\net8.0-windows\Application.pdb
+D:\WPF_Projects\EasyInventory\Application\bin\Debug\net8.0-windows\Domain.dll
+D:\WPF_Projects\EasyInventory\Application\bin\Debug\net8.0-windows\Domain.pdb
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.csproj.AssemblyReference.cache
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.AssemblyInfoInputs.cache
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.AssemblyInfo.cs
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.csproj.CoreCompileInputs.cache
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.sourcelink.json
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Applicat.44B5EDA2.Up2Date
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.dll
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\refint\Application.dll
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\Application.pdb
+D:\WPF_Projects\EasyInventory\Application\obj\Debug\net8.0-windows\ref\Application.dll
