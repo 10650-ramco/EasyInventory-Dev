@@ -8,9 +8,12 @@ namespace Presentation.WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is bool b && b
-                ? Visibility.Visible
-                : Visibility.Collapsed;
+            bool isVisible = value is bool b && b;
+            
+            if (parameter is string s && s.Equals("Inverse", StringComparison.OrdinalIgnoreCase))
+                isVisible = !isVisible;
+
+            return isVisible ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

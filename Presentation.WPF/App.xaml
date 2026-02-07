@@ -89,6 +89,9 @@
         <SolidColorBrush x:Key="WarningBrush" Color="#FB8C00"/>
         <SolidColorBrush x:Key="SuccessBrush" Color="#43A047"/>
         <SolidColorBrush x:Key="TextPrimaryBrush" Color="#212121"/>
+        
+        <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#263238"/>
+        <SolidColorBrush x:Key="SidebarForegroundBrush" Color="#FFFFFF"/>
 
         <!-- ===================== -->
         <!-- 🔘 Flat Icon Button -->

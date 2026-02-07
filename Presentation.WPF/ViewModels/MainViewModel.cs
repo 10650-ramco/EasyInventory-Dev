@@ -32,11 +32,13 @@ namespace Presentation.WPF.ViewModels
         private bool _isSidebarCollapsed;
         public bool IsSidebarCollapsed { get => _isSidebarCollapsed; set { _isSidebarCollapsed = value; OnPropertyChanged(); } }
 
+        public System.Windows.Input.ICommand ToggleSidebarCommand { get; }
         public ObservableCollection<MenuItemModel> Menus { get; }
 
         public MainViewModel(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
+            ToggleSidebarCommand = new RelayCommand(() => IsSidebarCollapsed = !IsSidebarCollapsed);
 
             Menus = new()
             {

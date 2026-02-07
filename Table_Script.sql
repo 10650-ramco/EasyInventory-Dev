@@ -1,4 +1,4 @@
-create table Users
+﻿create table Users
 (
 	Id			INT IDENTITY(1, 1),
 	UserName	NVARCHAR(20) NOT NULL,
@@ -113,8 +113,317 @@ CREATE TABLE Categories
 
 INSERT INTO Categories (CategoryName, Description)
 VALUES
-('Electronics', 'Computers, accessories, and electronic devices'),
-('Grocery', 'Daily grocery and food items'),
-('Stationery', 'Office and school stationery products'),
-('Home Appliances', 'Large and small home appliances'),
-('Electrical', 'Electrical fittings and lighting products');
+('Electronics', 'Devices and gadgets such as mobiles, laptops, and accessories'),
+('Mobile Phones', 'Smartphones, feature phones, and mobile accessories'),
+('Laptops & Computers', 'Laptops, desktops, monitors, and computer peripherals'),
+('Computer Accessories', 'Keyboards, mouse, printers, scanners, and cables'),
+('Groceries', 'Daily consumable food items and household essentials'),
+('Fruits & Vegetables', 'Fresh fruits and vegetables'),
+('Dairy Products', 'Milk, cheese, butter, curd, and dairy items'),
+('Beverages', 'Soft drinks, juices, tea, coffee, and energy drinks'),
+('Snacks & Packaged Foods', 'Biscuits, chips, instant foods, and snacks'),
+('Clothing & Apparel', 'Men, women, and children clothing'),
+('Men Clothing', 'Shirts, trousers, jeans, and ethnic wear for men'),
+('Women Clothing', 'Sarees, dresses, tops, and ethnic wear for women'),
+('Kids Clothing', 'Clothing and accessories for children'),
+('Footwear', 'Shoes, sandals, slippers, and boots'),
+('Men Footwear', 'Formal shoes, casual shoes, and sandals for men'),
+('Women Footwear', 'Heels, flats, sandals, and shoes for women'),
+('Kids Footwear', 'Footwear designed for children'),
+('Home & Kitchen', 'Household items and kitchen essentials'),
+('Kitchen Appliances', 'Mixers, grinders, ovens, and kitchen machines'),
+('Cookware', 'Pots, pans, pressure cookers, and utensils'),
+('Home Decor', 'Decorative items, wall art, and lighting'),
+('Furniture', 'Home and office furniture'),
+('Living Room Furniture', 'Sofas, tables, and TV units'),
+('Bedroom Furniture', 'Beds, wardrobes, and side tables'),
+('Office Furniture', 'Office desks, chairs, and storage units'),
+('Health & Personal Care', 'Personal hygiene and wellness products'),
+('Beauty & Cosmetics', 'Makeup, skincare, and beauty products'),
+('Hair Care', 'Shampoos, conditioners, and hair oils'),
+('Oral Care', 'Toothpaste, toothbrushes, and mouthwash'),
+('Books & Stationery', 'Books and office or school stationery'),
+('Educational Books', 'Academic, reference, and learning books'),
+('Notebooks & Diaries', 'Writing notebooks and planners'),
+('Office Supplies', 'Files, folders, pens, and staplers'),
+('Sports & Fitness', 'Sports equipment and fitness accessories'),
+('Gym Equipment', 'Weights, treadmills, and workout machines'),
+('Outdoor Sports', 'Cricket, football, badminton, and outdoor gear'),
+('Yoga & Wellness', 'Yoga mats, accessories, and wellness items'),
+('Toys & Baby Products', 'Toys and baby care essentials'),
+('Baby Care', 'Diapers, baby food, and baby hygiene products'),
+('Educational Toys', 'Learning and activity-based toys'),
+('Games & Puzzles', 'Board games, puzzles, and indoor games'),
+('Automotive Accessories', 'Vehicle accessories and car care products'),
+('Car Electronics', 'Car audio systems, chargers, and GPS'),
+('Cleaning Supplies', 'Cleaning liquids, tools, and disinfectants'),
+('Pet Supplies', 'Food, toys, and accessories for pets'),
+('Gardening Supplies', 'Plants, seeds, tools, and gardening equipment'),
+('Hardware & Tools', 'Tools, electricals, and hardware supplies');
+
+
+IF NOT EXISTS (
+    SELECT 1 
+    FROM sys.objects 
+    WHERE name = 'Customers' AND type = 'U'
+)
+BEGIN
+    CREATE TABLE Customers
+    (
+        CustomerId          INT IDENTITY(1,1)
+                            CONSTRAINT PK_Customers 
+                            PRIMARY KEY,
+
+        CustomerCode        NVARCHAR(50) NOT NULL
+                            CONSTRAINT UQ_Customers_CustomerCode 
+                            UNIQUE,
+
+        CustomerName        NVARCHAR(200) NOT NULL,
+
+        CustomerType        NVARCHAR(50) NOT NULL,  
+        -- B2B / B2C / Export / SEZ
+
+        -------------------------------------------------
+        -- GST & TAX DETAILS
+        -------------------------------------------------
+        GSTIN               NVARCHAR(15) NULL,     
+        -- 15 chars: 22AAAAA0000A1Z5
+
+        PAN                 NVARCHAR(10) NULL,     
+        -- AAAAA9999A
+
+        GSTRegistrationType NVARCHAR(50) NULL,     
+        -- Regular / Composition / Unregistered / SEZ / Export
+
+        IsGSTRegistered     BIT NOT NULL DEFAULT 0,
+
+        PlaceOfSupplyState  NVARCHAR(50) NULL,     
+        -- Used to calculate IGST / CGST / SGST
+
+        -------------------------------------------------
+        -- CONTACT DETAILS
+        -------------------------------------------------
+        Email               NVARCHAR(200) NULL,
+        PhoneNumber         NVARCHAR(20)  NULL,
+
+        -------------------------------------------------
+        -- BILLING ADDRESS
+        -------------------------------------------------
+        BillingAddress1     NVARCHAR(300) NULL,
+        BillingAddress2     NVARCHAR(300) NULL,
+        BillingCity         NVARCHAR(100) NULL,
+        BillingState        NVARCHAR(100) NULL,
+        BillingStateCode    NVARCHAR(2)   NULL,    
+        -- GST State Code (TN = 33, KA = 29, etc.)
+
+        BillingPincode      NVARCHAR(10)  NULL,
+        BillingCountry      NVARCHAR(100) NOT NULL DEFAULT 'India',
+
+        ---------------------------------------------------
+        ---- SHIPPING ADDRESS
+        ---------------------------------------------------
+        ShippingAddress1    NVARCHAR(300) NULL,
+        ShippingAddress2    NVARCHAR(300) NULL,
+        ShippingCity        NVARCHAR(100) NULL,
+        ShippingState       NVARCHAR(100) NULL,
+        ShippingStateCode   NVARCHAR(2)   NULL,
+        ShippingPincode     NVARCHAR(10)  NULL,
+
+        ---------------------------------------------------
+        -- FINANCIAL CONTROLS
+        -------------------------------------------------
+        CreditLimit         DECIMAL(18,2) NOT NULL DEFAULT 0,
+        PaymentTermsDays    INT NOT NULL DEFAULT 0,
+
+        -------------------------------------------------
+        -- STATUS & AUDIT
+        -------------------------------------------------
+        IsActive            BIT NOT NULL DEFAULT 1,
+
+        CreatedBy           NVARCHAR(100) NOT NULL,
+        CreatedDate         DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+
+        ModifiedBy          NVARCHAR(100) NULL,
+        ModifiedDate        DATETIME2 NULL
+    );
+
+    -------------------------------------------------
+    -- INDEXES
+    -------------------------------------------------
+    CREATE INDEX IX_Customers_Name
+        ON Customers (CustomerName);
+
+    CREATE INDEX IX_Customers_GSTIN
+        ON Customers (GSTIN);
+
+END
+GO
+
+
+Customers
+
+
+CustomerId	int	no	4
+CustomerCode	nvarchar	no	100
+CustomerName	nvarchar	no	400
+CustomerType	nvarchar	no	100
+GSTIN	nvarchar	no	30
+PAN	nvarchar	no	20
+GSTRegistrationType	nvarchar	no	100
+IsGSTRegistered	bit	no	1
+PlaceOfSupplyState	nvarchar	no	100
+Email	nvarchar	no	400
+PhoneNumber	nvarchar	no	40
+
+
+
+INSERT INTO Customers
+(
+    CustomerCode, CustomerName, CustomerType,
+    GSTIN, PAN, GSTRegistrationType, IsGSTRegistered, PlaceOfSupplyState,
+    Email, PhoneNumber,
+    BillingAddress1, BillingCity, BillingState, BillingStateCode, BillingPincode,
+    ShippingAddress1, ShippingCity, ShippingState, ShippingStateCode, ShippingPincode,
+    CreditLimit, PaymentTermsDays,
+    IsActive, CreatedBy
+)
+VALUES
+-- 1️⃣ Tamil Nadu – B2B (Same State – CGST + SGST)
+(
+    'CUST-TN-001',
+    'Sri Lakshmi Traders',
+    'B2B',
+    '33ABCDE1234F1Z5',
+    'ABCDE1234F',
+    'Regular',
+    1,
+    'Tamil Nadu',
+    'accounts@srilakshmitraders.com',
+    '9876543210',
+    'No 12, Anna Salai',
+    'Chennai',
+    'Tamil Nadu',
+    '33',
+    '600002',
+    'Warehouse Road',
+    'Chennai',
+    'Tamil Nadu',
+    '33',
+    '600097',
+    500000,
+    30,
+    1,
+    'SYSTEM'
+),
+
+-- 2️⃣ Karnataka – B2B (Interstate – IGST)
+(
+    'CUST-KA-002',
+    'Bangalore Industrial Supplies',
+    'B2B',
+    '29AABCU9603R1ZV',
+    'AABCU9603R',
+    'Regular',
+    1,
+    'Karnataka',
+    'finance@bisupplies.in',
+    '9845012345',
+    'Peenya Industrial Area',
+    'Bengaluru',
+    'Karnataka',
+    '29',
+    '560058',
+    'Peenya Industrial Area',
+    'Bengaluru',
+    'Karnataka',
+    '29',
+    '560058',
+    750000,
+    45,
+    1,
+    'SYSTEM'
+),
+
+-- 3️⃣ B2C – Unregistered Customer
+(
+    'CUST-B2C-003',
+    'Walk-in Customer Chennai',
+    'B2C',
+    NULL,
+    NULL,
+    'Unregistered',
+    0,
+    'Tamil Nadu',
+    NULL,
+    NULL,
+    'Retail Counter',
+    'Chennai',
+    'Tamil Nadu',
+    '33',
+    '600001',
+    'Retail Counter',
+    'Chennai',
+    'Tamil Nadu',
+    '33',
+    '600001',
+    0,
+    0,
+    1,
+    'SYSTEM'
+),
+
+-- 4️⃣ SEZ Customer – Zero Rated Supply
+(
+    'CUST-SEZ-004',
+    'ABC Tech SEZ Pvt Ltd',
+    'SEZ',
+    '33AAECA9999L1ZP',
+    'AAECA9999L',
+    'SEZ',
+    1,
+    'Tamil Nadu',
+    'gst@abctechsez.com',
+    '9790909090',
+    'SEZ Campus',
+    'Chennai',
+    'Tamil Nadu',
+    '33',
+    '600119',
+    'SEZ Campus',
+    'Chennai',
+    'Tamil Nadu',
+    '33',
+    '600119',
+    1000000,
+    60,
+    1,
+    'SYSTEM'
+),
+
+-- 5️⃣ Export Customer – Outside India (Zero GST)
+(
+    'CUST-EXP-005',
+    'Global Auto Parts LLC',
+    'Export',
+    NULL,
+    NULL,
+    'Export',
+    0,
+    'Outside India',
+    'imports@globalautoparts.com',
+    '+1-312-555-7890',
+    '742 Evergreen Terrace',
+    'Chicago',
+    'Illinois',
+    NULL,
+    '60601',
+    '742 Evergreen Terrace',
+    'Chicago',
+    'Illinois',
+    NULL,
+    '60601',
+    2000000,
+    90,
+    1,
+    'SYSTEM'
+);

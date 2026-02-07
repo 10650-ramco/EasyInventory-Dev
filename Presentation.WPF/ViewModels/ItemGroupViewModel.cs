@@ -4,6 +4,10 @@ using MaterialDesignThemes.Wpf;
 using Presentation.WPF.Infrastructure;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Threading.Tasks; // Added for Task
+using System; // Added for Exception
+
+using Presentation.WPF.Views.UserControls;
 
 namespace Presentation.WPF.ViewModels
 {
@@ -174,15 +178,20 @@ namespace Presentation.WPF.ViewModels
         private async Task DeleteAsync(CategoryDto? category)
         {
             if (category == null) return;
-            try
+            
+            var result = await DialogHost.Show(new ConfirmationDialog(), "RootDialog");
+            if (result is bool confirmed && confirmed)
             {
-                await _categoryService.DeleteAsync(category.CategoryId);
-                BoundMessageQueue.Enqueue("Category deleted.");
-                await LoadCategoriesAsync(_pageIndex);
-            }
-            catch (Exception ex)
-            {
-                BoundMessageQueue.Enqueue($"Could not delete: {ex.Message}");
+                try
+                {
+                    await _categoryService.DeleteAsync(category.CategoryId);
+                    BoundMessageQueue.Enqueue("Category deleted.");
+                    await LoadCategoriesAsync(_pageIndex);
+                }
+                catch (Exception ex)
+                {
+                    BoundMessageQueue.Enqueue($"Could not delete: {ex.Message}");
+                }
             }
         }
     }

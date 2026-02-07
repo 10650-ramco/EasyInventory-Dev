@@ -87,12 +87,14 @@ namespace Presentation.WPF
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
 
             // Services 
             //services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ICustomerService, CustomerService>();
 
             // Window / Navigation
             services.AddSingleton<IWindowService, WindowService>();
@@ -124,7 +126,7 @@ namespace Presentation.WPF
 
         private void ShowLoginWindow()
         {
-            var loginWindow = _serviceProvider!.GetRequiredService<MainWindow>();
+            var loginWindow = _serviceProvider!.GetRequiredService<LoginWindow>();
             loginWindow.Show();
         }
     }

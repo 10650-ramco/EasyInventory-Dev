@@ -52,7 +52,7 @@ namespace Presentation.WPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Presentation.WPF;component/views/usercontrols/purchaseinvoiceview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Presentation.WPF;V1.0.0.0;component/views/usercontrols/purchaseinvoiceview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\UserControls\PurchaseInvoiceView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

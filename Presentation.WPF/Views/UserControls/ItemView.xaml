@@ -117,7 +117,7 @@
                     </materialDesign:Card>
 
                     <!-- Total Inventory Value -->
-                    <materialDesign:Card Margin="8" Padding="24" UniformCornerRadius="16" materialDesign:ElevationAssist.Elevation="Dp0">
+                    <materialDesign:Card Margin="8" Padding="24" UniformCornerRadius="16" materialDesign:ElevationAssist.Elevation="Dp16">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

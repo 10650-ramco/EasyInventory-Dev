@@ -95,7 +95,7 @@ namespace Presentation.WPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Presentation.WPF;component/views/usercontrols/itemgroupview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Presentation.WPF;V1.0.0.0;component/views/usercontrols/itemgroupview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\UserControls\ItemGroupView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -128,3 +128,5 @@ D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\refint\P
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Presentation.WPF.pdb
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Presentation.WPF.genruntimeconfig.cache
 D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\ref\Presentation.WPF.dll
+D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ConfirmationDialog.baml
+D:\WPF_Projects\EasyInventory\Presentation.WPF\obj\Debug\net8.0-windows\Views\UserControls\ConfirmationDialog.g.cs

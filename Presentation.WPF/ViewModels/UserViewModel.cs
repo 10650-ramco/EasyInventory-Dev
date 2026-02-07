@@ -3,6 +3,8 @@ using Application.Interfaces;
 using Presentation.WPF.Infrastructure;
 using System.Collections.ObjectModel;
 using System.Windows;
+using MaterialDesignThemes.Wpf;
+using Presentation.WPF.Views.UserControls;
 
 namespace Presentation.WPF.ViewModels
 {
@@ -170,24 +172,22 @@ namespace Presentation.WPF.ViewModels
             if (SelectedUser == null)
                 return;
 
-            var confirmed = ShowConfirmation(
-                "Are you sure you want to delete this User?");
-
-            if (confirmed != MessageBoxResult.OK)
-                return;
-
-            var result = await _UserService.DeleteUserAsync(SelectedUser.Id);
-
-            if (!result.IsSuccess)
+            var result = await DialogHost.Show(new ConfirmationDialog(), "RootDialog");
+            if (result is bool confirmed && confirmed)
             {
-                ShowError(result.Error);
-                return;
+                var deleteResult = await _UserService.DeleteUserAsync(SelectedUser.Id);
+
+                if (!deleteResult.IsSuccess)
+                {
+                    ShowError(deleteResult.Error);
+                    return;
+                }
+
+                ShowInfo("User deleted successfully.");
+
+                await LoadUserAsync();
+                ClearForm();
             }
-
-            ShowInfo("User deleted successfully.");
-
-            await LoadUserAsync();
-            ClearForm();
         }
 
         #endregion

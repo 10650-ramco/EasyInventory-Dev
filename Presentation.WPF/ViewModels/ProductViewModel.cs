@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
+using MaterialDesignThemes.Wpf;
+using Presentation.WPF.Views.UserControls;
+
 namespace Presentation.WPF.ViewModels
 {
     public class ProductViewModel : ViewModelBase
@@ -136,8 +139,13 @@ namespace Presentation.WPF.ViewModels
     private async Task DeleteAsync(ProductDto product)
     {
         if (product == null) return;
-        await _service.DeleteAsync(product.Id);
-        await LoadAsync(_pageIndex);
+
+        var result = await DialogHost.Show(new ConfirmationDialog(), "RootDialog");
+        if (result is bool confirmed && confirmed)
+        {
+            await _service.DeleteAsync(product.Id);
+            await LoadAsync(_pageIndex);
+        }
     }
 }
 }

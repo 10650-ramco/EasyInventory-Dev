@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\WPF_Projects\EasyInventory\Presentation.WPF\App.xaml
-21-252943959
+22-710111670
 231861923370
-54574106750
+552105419942
 245-1142369858
-Views\UserControls\CompanyDetailsView.xaml;Views\UserControls\CustomersView.xaml;Views\UserControls\DashboardView.xaml;Views\UserControls\DeliveryChallanView.xaml;Views\UserControls\EmployeeView.xaml;Views\UserControls\InventoryView.xaml;Views\UserControls\ItemGroupView.xaml;Views\UserControls\ItemView.xaml;Views\UserControls\PasswordInputControl.xaml;Views\UserControls\ProductView.xaml;Views\UserControls\PurchaseInvoiceView.xaml;Views\UserControls\PurchaseOrderView.xaml;Views\UserControls\PurchaseView.xaml;Views\UserControls\ReportsView.xaml;Views\UserControls\SalesInvoiceView.xaml;Views\UserControls\SalesView.xaml;Views\UserControls\StockSummaryReportView.xaml;Views\UserControls\SuppliersView.xaml;Views\UserControls\UserView.xaml;Views\Windows\LoginWindow.xaml;Views\Windows\MainWindow.xaml;
+Views\UserControls\CompanyDetailsView.xaml;Views\UserControls\ConfirmationDialog.xaml;Views\UserControls\CustomersView.xaml;Views\UserControls\DashboardView.xaml;Views\UserControls\DeliveryChallanView.xaml;Views\UserControls\EmployeeView.xaml;Views\UserControls\InventoryView.xaml;Views\UserControls\ItemGroupView.xaml;Views\UserControls\ItemView.xaml;Views\UserControls\PasswordInputControl.xaml;Views\UserControls\ProductView.xaml;Views\UserControls\PurchaseInvoiceView.xaml;Views\UserControls\PurchaseOrderView.xaml;Views\UserControls\PurchaseView.xaml;Views\UserControls\ReportsView.xaml;Views\UserControls\SalesInvoiceView.xaml;Views\UserControls\SalesView.xaml;Views\UserControls\StockSummaryReportView.xaml;Views\UserControls\SuppliersView.xaml;Views\UserControls\UserView.xaml;Views\Windows\LoginWindow.xaml;Views\Windows\MainWindow.xaml;
 
 True
 
